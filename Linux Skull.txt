@@ -1,0 +1,180 @@
+https://www.consoleroms.com/
+https://gamefaqs.gamespot.com/ps2
+
+http://materi.smkn43jkt.sch.id/?p=5054
+http://software.mediatkj.web.id
+
+apt-cdrom add (nambah cd)
+apt-get update (membaca cd))
+nano /etc/apt/source.list
+
+mau config ip
+nano /etc/network/interfaces
+
+auto enp0s3
+iface enp0s3 inet static
+    addres 192.168.1.15
+    netmask 255.255.255.0
+    broadcast 192.168.1.255
+    gateaway 192.168.1.1
+ (ABIS ITU)
+/etc/init.d/networking restart
+tinggal test make ping (masukin IP)
+
+
+apt-get install isc-dhcp-server
+(abis itu buat apus2 pager)
+nano /et/dhcp/dhcpd.conf
+(abis itu masukin enpose)
+nano /etc/default/isc-dhcp-server
+(abis di ubah subnet dll. ketik dibawah ini)
+/etc/init.d/isc-dhcp-server restart
+service isc-dhcp-server restart
+apt autoremove isc-dhcp-server --purge ( restart pabrik )
+
+
+
+install vsftpd (masukin cd 1 dan 2)
+apt-get install vsftpd
+(ilangin pager write)
+nano /etc/vsftpd.conf
+(buat restart)
+/etc/init.d/vsftpd restart
+
+(HAPUS USER)
+(masuk ke user abis itu "SU", lalu ketik
+userdel -r namauser
+
+chroot & localroot
+
+chroot_local_user=YES
+allow_writeable_chroot=YES
+user_sub_token=$USER
+local_root=/home/$USER
+
+(nambahin user)
+cd /home
+adduser (masukinNama)
+jgn lupa init 
+/etc/init.d/vsftpd restart
+
+
+
+pro ftp
+apt-get install proftpd
+nano /etc/proftpd/proftpd.conf
+(/home/ftp)
+(setelah diubah di conf nya) buka
+cd /home
+mkdir ftp
+chmod 777 ftp
+adduser admin(sesuai nama yg kita msukin di conf)
+(buat pw  enter ampe kelar)
+(abis itu restart jaringan proftpd)
+/etc/init.d/proftpd restart
+
+{SAMBA}
+command pas di samba conf paling bawah
+net use * /delete => y (buat logout samba di file explorer)
+
+[PUBLIC]
+path (TAB) = /home/filesever/public
+browseable (TAB) = yes
+writeable (TAB) = yes
+security (TAB) = share
+guest ok (TAB) = yes
+read only(TAB) = no
+
+[PRIVATE]
+path (TAB) = /home/fileserver/private
+browseable (TAB) = yes
+writeable (TAB) = yes
+security (TAB) = yes
+valid user (TAB) = tkj43
+guest ok (TAB) = no
+read only (TAB) = no
+
+[GUEST]
+path (TAB) = /home/fileserver/guest
+browseable (TAB) = yes
+writeable (TAB) = no
+security (TAB) = share
+guest ok (TAB) = yes
+read only (TAB) = yes
+
+{ path = buat ngarahin file
+{ browseable = biar tampil di windows
+{ read only = g bisa di upload
+{ guest = bikin pw 
+
+[READ-ONLY]
+path (TAB) = /home/fileserver/read-only
+browseable (TAB) = yes
+writeable (TAB) = no
+security (TAB) = share
+guest ok (TAB) = yes
+read only (TAB) = yes
+
+abis itu 
+smbpsswd -a tkj43 (lu buat user dulu  di cd/home tkj43)
+
+APACHE2
+
+apt-get install apache2, dnsutils
+trus
+cd /etc/apache2/sites-available
+trus copy file default ganti jadi nama kita
+cd 000-default.conf (kasihnama).conf
+abis itu masuk ke dalem file nya "nano (NamaFile).conf
+Ganti server adminnya jadi gmail kita aja
+
+(buat disable & enable .conf)
+a2dissite 000-default.conf
+a2enstie (namaweb).conf
+
+SSH SERVER
+apt install openssh-server -y
+nano /etc/ssh/sshd_config
+(buat cek port yang masuk+bisa ifconfig)
+apt install net-tools
+(Batasi user)
+AllowUsers Gilang
+
+PHPMyAdmin
+(masuk ke mysql)
+mysql-u root -p
+(buat user)
+create user 'bgs'@'localhost' identified by '321';
+(contoh buat database)
+create database db_default
+grant all on db_default.* to 'bgs'@'localhost';
+grant all on db_default.* to 'bgs'@'localhost';
+
+user set plugin='' where user='root';
+flush privileges;
+
+
+mysql -u root -p
+lalu ketikkan perintah seperti di bawah
+[mysql] use mysql;
+[mysql] SET PASSWORD FOR ‘root’@’localhost’ = ”;
+[mysql] exit
+
+EHCP
+(install SSH server dulu buat masukin repo luar)
+(masukkin juga ZIP EHCP Yeni di /home)
+(extract ZIP nya)
+tar xzvf ehcp_yeni.tgz
+(repository luarnya masukin di debian)
+deb http://kartolo.sby.datautama.net.id/debian/ stretch main contrib non-free
+deb http://kartolo.sby.datautama.net.id/debian/ stretch-updates main contrib non-free
+deb http://kartolo.sby.datautama.net.id/debian-security/ stretch/updates main contrib non-free 
+"apt-get update" (harus ada internet buat dwnld reponya)
+ke /home/ehcp, ketik "./install.sh"
+(abis kelar install)
+cd /etc/apache2/sites-available
+(ganti nama 000-default.conf => 000-defaul.conf.bak)
+mv 000-defaul.conf 000-defaul.conf.bak
+(ganti nama 000-default => 000-defaul.conf)
+mv 000-defaul.conf 000-defaul.conf
+a2ensite 000-default.conf

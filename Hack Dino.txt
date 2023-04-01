@@ -1,0 +1,15 @@
+HACK DINO
+
+(lari ditempat)
+Runner.instance_.playingintro = true
+
+(kebal)
+Runner.instance_.gameOver = function () {};
+
+(lari gacor)
+Runner.instance_.setSpeed (50)
+
+(Jump)
+Runner.instance_.tRex.setJumpVelocity (50)
+
+(Ngubah char)

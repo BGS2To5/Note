@@ -1,0 +1,40 @@
+Belajar Mysql
+
+DDL (Data Definition Language) = 
+create, alter, drop
+DML (Data Manipulation Language) =
+Insert, Select, Update, Delete
+
+command:
+show databases;
+CREATE database toko;
+create database if not exists toko;
+DROP database toko;
+use toko
+describe satuan;
+show tables;
+
+create table 
+satuanId INT NOT NULL AUTO_INCREMENT,
+SatuanNama VARCHAR (40) NOT NULL,
+PRIMARY KEY (satuanId)
+);
+
+ON DELETE RESTRICT = parent g bisa dihapus
+ON DELETE CASCADE = parent bisa di hapus
+ON DELETE RESTRICT ON UPDATE CASCADE,
+
+(ALTER)
+ALTER TABLE barang ADD COLUMN deskripsi text;
+ALTER TABLE barang ADD COLUMN deskripsi text AFTER barangId;
+
+(INSERT)
+INSERT INTO satuan VALUES (NULL,"pcs");
+INSERT INTO satuan (satuanNama) VALUES ("kg");
+INSERT INTO satuan (satuanId) VALUES ('test'),('coba');
+select * from satuan;
+
+(UPDATE)
+UPDATE barang SET `harga_beli` = 4500 WHERE barangId = 1
+
+(DELETE)
