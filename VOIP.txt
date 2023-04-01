@@ -1,0 +1,47 @@
+Jaringan VOIP
+
+(SETING SWITCH {Jadi intinya masukin vlan ke Fast Ethernet 1-24} )
+enable -> configure terminal
+int range fa0/1-24
+switch voice vlan 1
+no shutdown
+
+(SETING ROUTER)
+enable -> configure terminal
+ip dhcp pool voice
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+option 150 ip 192.168.1.1
+exit (sekali aj) 
+{masuk ke Router config if}
+ip dhcp excluded-address 192.168.1.1
+
+(nambahin ip routernya)
+int fastethernet 0/0
+{masuk ke setingan router (config-if) }
+ip add 192.168.1.1 255.255.255.0
+no shutdown
+exit (sekali aj)
+
+(masuk ke setingan telephone)
+telephony-service
+max-ephones 3 (tergantung mao berapa)
+max-dn 3
+ip source-address 192.168.1.1 port 2000
+auto assign 4 to 6
+auto assign 1 to 3
+(sekarang seting nomor telephone )
+ephone-dn 1
+number 111 (bebas mao berapa)
+ephone-dn 2
+number 222 (bebas mao berapa)
+ephone-dn 3 (bebas mao berapa) 
+
+UDAH TINGGAL TEST AJA !!!
+
+NEW MATERI 
+BIAR CONNECT VOIP beda ip
+(masuk ke router pertama)
+dial-peer voice 1 voip
+session target ipv4:(masukin ip router ke 2)
+destination-pattern (masukin no telepon)
