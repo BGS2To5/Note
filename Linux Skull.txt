@@ -7,6 +7,7 @@ http://software.mediatkj.web.id
 apt-cdrom add (nambah cd)
 apt-get update (membaca cd))
 nano /etc/apt/source.list
+apt --fix-broken install
 
 mau config ip
 nano /etc/network/interfaces
