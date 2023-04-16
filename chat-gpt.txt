@@ -4,6 +4,7 @@ Chat GPT
 netplwiz ( Atur User Account )
 msconfig ( Atur Boot ) 
 msinfo32 ( Insromasi system )
+Windows + ctrl + shift + B (restart VGA)
 
 git init
 git add .
