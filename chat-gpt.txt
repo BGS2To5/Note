@@ -17,7 +17,7 @@ git push -u origin main
 mainhttps://www.000webhost.com/members/website/list
 x
 id &PW 000webhost yakali
-id = BGS-WEB
+id = BGS-WEBb
 pw = CUh8WBTHh1$Dd*pvsVfh
 
 https://45.12.2.2/
@@ -35,6 +35,7 @@ display: none;
 imr
 
 alt untuk mau mindah
+twibbonize.com
 unsplash.com
 subtlepatterns.com
 reduceimages.com
