@@ -5,6 +5,7 @@ netplwiz ( Atur User Account )
 msconfig ( Atur Boot ) 
 msinfo32 ( Insromasi system )
 Windows + ctrl + shift + B (restart VGA)
+ncpa.cpl (ke change adaptor)
 
 git init
 git add .
