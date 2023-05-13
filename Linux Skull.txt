@@ -1,5 +1,7 @@
-https://www.consoleroms.com/
-https://gamefaqs.gamespot.com/ps2
+deb cdrom:[Debian GNU/Linux 9.13.0 _Stretch_ - official i386 DVD Binary-3 20200718-12:29]/ stretch contrib main
+deb cdrom:[Debian GNU/Linux 9.13.0 _Stretch_ - official i386 DVD Binary-2 20200718-12:29]/ stretch contrib main
+deb cdrom:[Debian GNU/Linux 9.13.0 _Stretch_ - official i386 DVD Binary-1 20200718-12:29]/ stretch contrib main
+
 
 http://materi.smkn43jkt.sch.id/?p=5054
 http://software.mediatkj.web.id
