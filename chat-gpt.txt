@@ -12,8 +12,9 @@ git add .
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/BGS2To5/HackBGRT-C.Bckgrnd-.git
-
 git push -u origin main
+
+git clone https://github.com/BGS2To5/My-Layout-Web.git (ngambil file github dari CLI)
 
 mainhttps://www.000webhost.com/members/website/list
 x
