@@ -6,6 +6,8 @@ msconfig ( Atur Boot )
 msinfo32 ( Insromasi system )
 Windows + ctrl + shift + B (restart VGA)
 ncpa.cpl (ke change adaptor)
+ALT + 2 buat folder
+ALT + 1 liat properties
 
 git init
 git add .
