@@ -8,6 +8,7 @@ Windows + ctrl + shift + B (restart VGA)
 ncpa.cpl (ke change adaptor)
 ALT + 2 buat folder
 ALT + 1 liat properties
+mrt (check virus)
 
 git init
 git add .
