@@ -1,0 +1,121 @@
+LOAD BALANCE (nyatuin jaringan ISP 1 & 2 by: Mikrotik Indonesia)
+
+MANGLE
+
+(mangle untuk bypas LAN degan accept)
++
+(chain)
+dst. Address = (ip ether 1)/...
+(action)
+action = accept
+
++
+(chain)
+dst. Address = (ip ether 2)/...
+(action)
+action = accept
+
+
++
+(chain)
+dst. Address = (ip ether 3)/...
+(action)
+action = accept
+
+{Mark Connection}
+1. +
+(general)
+chain = pre routing
+in interface = ether 1
+(action)
+action = Mark connection
+new connection mark = ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 2
+(action)
+action = Mark connection
+new connection mark = ISP-2
+
+{ Mark Connection } (mecah ISP 1 dan 2)
+1. +
+(general)
+chain = pre routing
+in interface = ether  3 (ether ke hubung ke komputer/user)
+(advanced)
+Per Connection Classifier = both address   2 / 0 (2= jumlah berapa isp yang mau dibagi) (0= isp 1, 1 = isp 2, dst.)
+(action)
+Action = mark connection
+new mark connection = ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+(advanced)
+Per Connection Classifier = both address   2 / 1 (2= jumlah berapa isp yang mau dibagi) (0= isp 1, 1 = isp 2, dst.)
+(action)
+Action = mark connection
+new mark connection = ISP-2
+
+{ Mark Routing  }
+1. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+connection mark = ISP-1
+(action)
+action = mark routing
+pre routing mark = ke ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+connection mark = ISP-2
+(action)
+action = mark routing
+pre routing mark = ke ISP-2
+
+{output mark routing}
+1. +
+(general)
+chain = output
+connection mark = ISP-1
+(action)
+action = mark routing
+new routing mark = ke ISP-1
+
+2. +
+(general)
+chain = output
+connection mark = ISP-2
+(action)
+action = mark routing
+new routing mark = ke ISP-2
+
+{IP => ROUTE}
+
++
+gateway = IP GATEWAY ISP 1 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+routing mark = ke ISP-1
+
++
+gateway = IP GATEWAY ISP 2 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+routing mark = ke ISP-2
+
++
+gateway = IP GATEWAY ISP 1 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 2
+routing mark = ke ISP-2
+
++
+gateway = IP GATEWAY ISP 2 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 2
+routing mark = ke ISP-1
