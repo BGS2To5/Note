@@ -1,0 +1,104 @@
+LOAD BALANCE (nyatuin 2 internet dari ISP)
+
+Mangle
+
+{ Mark Connection }
+1. +
+(general)
+chain = pre routing
+in interface = ether  3 (ether ke hubung ke komputer/user)
+connection mark = no mark
+(advanced)
+Per Connection Classifier = both address and ports   2 / 0 (2= jumlah berapa isp yang mau dibagi) (0= isp 1, 1 = isp 2, dst.)
+(action)
+Action = mark connection
+new mark connection = ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+connection mark = no mark
+(advanced)
+Per Connection Classifier = both address and ports   2 / 1 (2= jumlah berapa isp yang mau dibagi) (0= isp 1, 1 = isp 2, dst.)
+(action)
+Action = mark connection
+new mark connection = ISP-2
+
+{ Mark Routing  }
+1. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+connection mark = ISP-1
+(action)
+action = mark routing
+pre routing mark = ke ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 3 (ether ke hubung ke komputer/user)
+connection mark = ISP-2
+(action)
+action = mark routing
+pre routing mark = ke ISP-2
+
+{Mark Connection}
+1. +
+(general)
+chain = pre routing
+in interface = ether 1
+connection mark = no mark
+(action)
+action = Mark connection
+new connection mark = ISP-1
+
+2. +
+(general)
+chain = pre routing
+in interface = ether 2
+connection mark = no mark
+(action)
+action = Mark connection
+new connection mark = ISP-2
+
+{output mark routing}
+1. +
+(general)
+chain = output
+connection mark = ISP-1
+(action)
+action = mark routing
+new routing mark = ke ISP-1
+
+2. +
+(general)
+chain = output
+connection mark = ISP-2
+(action)
+action = mark routing
+new routing mark = ke ISP-2
+
+{IP => ROUTE}
++
+gateway = IP GATEWAY ISP 1 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 1
+routing mark = ke ISP-1
+
++
+gateway = IP GATEWAY ISP 2 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 1
+routing mark = ke ISP-2
+
++
+gateway = IP GATEWAY ISP 1 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 1
+
++
+gateway = IP GATEWAY ISP 2 (liatnya dari IP DHCP client di status, gateway)
+check gateway = ping
+distance = 1
