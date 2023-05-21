@@ -1,0 +1,24 @@
+Blocking (port 80 / http) menggunakan web proxy
+
+ip => web proxy
+(general)
+ceklis enabled
+ceklis cache on disk
+ganti cache administrator pake gmail masing2
+
+(access)
++
+Dst. host = web yang mau di block
+action = deny
+
+IP => Firewall => NAT
++
+(action)
+action = redirect
+to ports = 8080
+
+(general)
+chain = dstnat
+protocol = 6tcp
+dst port = 80 / kosongkan
+
