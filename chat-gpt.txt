@@ -1,5 +1,6 @@
 Chat GPT
 chat.openai.com
+HGFE.DCAB (buat kubus kaya mtk)
 
 netplwiz ( Atur User Account )
 msconfig ( Atur Boot ) 
