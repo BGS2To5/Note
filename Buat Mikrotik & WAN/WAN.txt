@@ -1,9 +1,7 @@
 Materi WAN PROXY
-
-
-
 Port proxy 8080,3128
 port yang di redirect 80,443
+tcp = 6, udp= 17
 
 IP = > firewall nat
 action = redirect
@@ -12,10 +10,83 @@ DNS Transparent port = 53
 chain = dstnat
 protocol = 6 tcp
 
-
 squid (linux,freebsd,unix)
 SSL sertifikat (per year biasanya)
 proxy biasanya pakai 1 oc untuk proxy
 kalo menggunakan pihak ke tiga namanya eksternal proxy
 port harus ada tanda ceklis
+
+    {transparent proxy}
+ip => web proxy
+(general)
+ceklis enabled
+ceklis cache on disk
+ganti cache administrator pake gmail masing2
+
+IP => Firewall => NAT
++
+(action)
+action = redirect
+to ports = 8080
+
+(general)
+chain = dstnat
+protocol = 6tcp
+dst port = 80  (apply & ok)
+
++
+(action)
+action = redirect
+to ports = 8080
+
+(general)
+chain = dstnat
+protocol = 17 (udp)
+dst port = 80  (apply & ok)
+
++
+(action)
+action = redirect
+to ports = 8080
+
+(general)
+chain = dstnat
+protocol = 6tcp
+dst port = 443 (apply & ok)
+
++
+(action)
+action = redirect
+to ports = 8080
+
+(general)
+chain = dstnat
+protocol = 17 (udp)
+dst port = 443 (apply & ok)
+
+  {agar client tidak bisa mengganti dns secara manual}
+IP => DNS
+(masukkan ip dns yang kita inginkan). contoh : 8.8.8.8, 8.8.4.4
+
+IP => Firewall => NAT
++
+(action)
+action = redirect
+to ports = 53
+
+(general)
+chain = dstnat
+protocol = 6tcp
+dst port = 53 (apply & ok)
+
++
+(action)
+action = redirect
+to ports = 53
+
+(general)
+chain = dstnat
+protocol = 17 (udp)
+dst port = 53 (apply & ok)
+
 
