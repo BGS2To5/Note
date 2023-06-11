@@ -4,20 +4,20 @@ IP => Mangle
 (mangle untuk bypas LAN degan accept)
 +
 (chain)
-dst. Address = (ip ether 1)/...
+dst. Address = (ip ether 1).0/...
 (action)
 action = accept
 
 +
 (chain)
-dst. Address = (ip ether 2)/...
+dst. Address = (ip ether 2).0/...
 (action)
 action = accept
 
 
 +
 (chain)
-dst. Address = (ip ether 3)/...
+dst. Address = (ip ether 3).0/...
 (action)
 action = accept
 
