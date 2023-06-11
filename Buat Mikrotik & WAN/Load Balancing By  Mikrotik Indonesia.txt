@@ -1,7 +1,6 @@
 LOAD BALANCE (nyatuin jaringan ISP 1 & 2 by: Mikrotik Indonesia)
 
-MANGLE
-
+IP => Mangle 
 (mangle untuk bypas LAN degan accept)
 +
 (chain)
