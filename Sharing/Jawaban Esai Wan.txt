@@ -1,20 +1,20 @@
-Fungsi firewall pada mikrotik
+1.Fungsi firewall pada mikrotik
 firewall berfungsi untuk mengatur, mengawasi, memfilter, dan juga mengontrol aktivitas komputer yang terhubung ke internet.
 
-Fungsi 
+2. Fungsi 
   a. Max limit = berfungsi untuk memberikan batas maksimal bandwidth untuk client. yaitu (upload = 512K & donwload=2M)
   b. burst limit  = berfungsi agar client mendapatkan bandwidth yang melebihi max-limit untuk periode waktu yang telah kita tentukan. yaitu (upload=2M & donwload=4M)
   c. Burst Time = Lama waktu client mendapatkan Burst. yaitu (30 detik)
 (catatan : kaya max upload donwload nya tetep liat gambar di soal nya. karena takutnya beda)
 
- Fungsi transparent proxy
+3. Fungsi transparent proxy
 Transparent Proxy berfungsi agar client yang ke proxy tanpa harus menyeting atau memasukkan konfigurasi proxy ke browser satu per satu. & Transparent proxy juga dapat memantau apa saja website yang dibuka oleh client.
 
-Apa yang dimaksud bandwidth dedicated & up to?
+4. Apa yang dimaksud bandwidth dedicated & up to?
 - Bandwidth dedicated adalah, Bandwidth yang memiliki rasio bandwith 1:1. yang berarti bahwa bandwidth yang digunakan tidak terbagi dengan user lain
 - Bandwidth Up to adalah bandwidth terbagi. yang berarti bandwidth tersebut akan di bagi ke pengguna lain (tidak digunakan sendiri).
 
- cara konfigurasi limit bandwidth per ip address di mikrotik (langkah-langkahnya) =
+5. cara konfigurasi limit bandwidth per ip address di mikrotik (langkah-langkahnya) =
 (contoh ip yang ingin dilimit adalah = 192.168.absen.1/28)
 (contoh ip yang ingin dilimit adalah = 192.168.abesn.1/28 & band width yang dilimit . upload = 512Kbps & download = 1Mbps)
 Queues => +
