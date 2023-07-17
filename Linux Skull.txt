@@ -189,3 +189,11 @@ KELAS XII
     * materi web min ada di materi.smkn43jkt.sch.id
 - Load Balancer (bisa pakai apache & Nginx)
 
+Cara install webmin (dari materi.smkn43jkt.sch.id)
+apt update 
+apt upgrade
+apt install software-properties-common apt-transport-https wget sudo
+wget http://www.webmin.com/jcameron-key.asc  (atau) apt-key add jcameron-key.asc
+nano /etc/apt/sources.list (pada bagian bawah tambahkan)
+deb http://download.webmin.com/download/repository sarge contrib
+apt update && apt-get install webmin
