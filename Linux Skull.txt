@@ -181,3 +181,11 @@ mv 000-defaul.conf 000-defaul.conf.bak
 (ganti nama 000-default => 000-defaul.conf)
 mv 000-defaul.conf 000-defaul.conf
 a2ensite 000-default.conf
+
+KELAS XII
+- Control Panel ( webmin / EHC )
+- Share Hosting (1 host banyak domain beda beda isinya)
+    * master debian ( harus bridge )
+    * materi web min ada di materi.smkn43jkt.sch.id
+- Load Balancer (bisa pakai apache & Nginx)
+
