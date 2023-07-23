@@ -10,6 +10,11 @@ ncpa.cpl (ke change adaptor)
 ALT + 2 buat folder
 ALT + 1 liat properties
 mrt (check virus)
+hapus virus
+temp
+%temp%
+prefetch
+%appdata%
 
 git init
 git add .
