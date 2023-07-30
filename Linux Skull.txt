@@ -197,3 +197,13 @@ wget http://www.webmin.com/jcameron-key.asc  (atau) apt-key add jcameron-key.asc
 nano /etc/apt/sources.list (pada bagian bawah tambahkan)
 deb http://download.webmin.com/download/repository sarge contrib
 apt update && apt-get install webmin
+
+repo online debian 12
+deb http://deb.debian.org/debian bookworm main non-free-firmware
+deb-src http://deb.debian.org/debian bookworm main non-free-firmware
+
+deb http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware
+deb-src http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware
+
+deb http://deb.debian.org/debian bookworm-updates main non-free-firmware
+deb-src http://deb.debian.org/debian bookworm-updates main non-free-firmware
