@@ -1,6 +1,10 @@
-Chat GPT
+(Chat GPT)
 chat.openai.com
 HGFE.DCAB (buat kubus kaya mtk)
+(Captions App)
+Import Vidio => Ceklis AI Eye Contact
+
+
 
 netplwiz ( Atur User Account )
 msconfig ( Atur Boot ) 
