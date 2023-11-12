@@ -109,12 +109,10 @@ routing mark = ke ISP-2
 
 +
 gateway = IP GATEWAY ISP 1 (liatnya dari IP DHCP client di status, gateway)
-check gateway = ping
 distance = 2
 routing mark = ke ISP-2
 
 +
 gateway = IP GATEWAY ISP 2 (liatnya dari IP DHCP client di status, gateway)
-check gateway = ping
 distance = 2
 routing mark = ke ISP-1
