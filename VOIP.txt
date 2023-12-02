@@ -45,3 +45,6 @@ BIAR CONNECT VOIP beda ip
 dial-peer voice 1 voip
 session target ipv4:(masukin ip router ke 2)
 destination-pattern (masukin no telepon)
+
+Agar setingan router tidak hilang pas di restart / power off
+do write
