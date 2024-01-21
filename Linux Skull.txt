@@ -209,4 +209,92 @@ deb-src http://deb.debian.org/debian-security/ bookworm-security main non-free-f
 deb http://deb.debian.org/debian bookworm-updates main non-free-firmware
 deb-src http://deb.debian.org/debian bookworm-updates main non-free-firmware
 (untuk installl usermin)
-pada saat menuliskan 'apt install webmin' ketikkan juga 'apt insatall usermin'
+pada saat menuliskan 'apt install webmin' ketikkan juga 'apt install usermin'
+
+(roundcube)
+
+harus terlebih dahulu install package 
+apt install apache2 php mariadb-server mariadb-client
+Apt install phpmyadmin
+(buat database di phpmyadmin dengan nama "roundcube")
+
+apt install postfix dovecot-imapd dovecot-pop3d
+
+Postfix config =
+nano /etc/postfik/main.cf
+Tambahin buat plg bwh
+home_mailbox = Maildir/
+maildirmake.dovecot /etc/skel/Maildir
+
+dpkg-reconfigure postfix
+general mail: internet site
+System mail name: gk perlu di ganti (ok aja)
+recipent for root: kosongin
+other destination: terusin aja
+Force: yes
+local network: 0.0.0.0/0
+mailbox limit: 0 (gk limit) next aja
+local address: biarin
+internet protocol: ipv4
+
+Dovecot config =
+nano /etc/dovecot/dovecot.conf
+yang dihilangin barisan
+#listen (cuma ini) Fungsi: kita bisa ambil semua email yg datang ke dia.
+CTRL C buat munculin baris ke berapa
+
+nano /etc/dovecot/conf.d/10-mail.conf
+yg diilangin
+#mail_location= maildir: /Maildir baris ke 24
+dikasih #: mail_location = mbox: /mail:INBOX
+ 
+nano /etc/dovecot/conf.d/10-auth.conf
+yg dibuang
+#disable_plaintext_auth = yes -> = no (baris ke sepuluh)
+/etc/init.d/postfix restart
+/etc/init.d/dovecot restart
+
+Kalo oops 505 blm install postfix & dovecot/ ada yg salah config
+
+apt install roundcube
+config database:yes
+Mysql application password:masukin password phpmyadmin/Mysql masukin 2 kali
+
+Roundcube config =
+nano /etc/rouncube/config.inc.php
+
+nano /etc/roundcube/config.inc.php
+localhost:143 ganti jadi domain kita (kalau punya).
+(kalau ga bisa login)
+ hapus port 143 dan 587, % u & %p
+
+dpkg-reconfigure roundcube-core
+IMAP server: localhost:143 -> dihapus
+Default lengunge: inggris
+reinstall database: yes
+connection: unik 
+autentichation: default
+mysql database name: nama user account phpmyadmin
+mysql username: nama user account@localhost
+password 2 kali: password phpmyadmin
+Name of database: nama login/roundcube
+web server:
+*apache
+lightpd -> ilangin *
+should restart: yes
+
+Config roundcube di apache
+nano /etc/apache2/conf-enabled/roundcube.conf
+(kalo gk bisa masuk ke cd apache dulu)
+cd /etc/apache2/
+cd /conf-enabled/
+roundcube.conf
+
+hapus pagar
+Alias /roundcube (baris ke 3) biar bisa muncul disemua domain yg kita buat
+restart apache
+
+login
+name: user linux kita (root)
+pw: sama
+localhost
