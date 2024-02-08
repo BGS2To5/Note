@@ -48,3 +48,4 @@ destination-pattern (masukin no telepon)
 
 Agar setingan router tidak hilang pas di restart / power off
 do write
+munculin menu shotrcut "?"
